@@ -1,0 +1,119 @@
+.papers-container {
+  padding: 40px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.table-container {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  overflow-x: auto;
+}
+
+.papers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.papers-table th,
+.papers-table td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.papers-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.papers-table tr:hover {
+  background: #f9fafb;
+}
+
+/* Buttons */
+.btn {
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.edit-btn {
+  background: #2563eb;
+  color: #fff;
+}
+
+.delete-btn {
+  background: #dc2626;
+  color: #fff;
+}
+
+.update-btn {
+  background: #16a34a;
+  color: #fff;
+}
+
+.cancel-btn {
+  background: #6b7280;
+  color: #fff;
+}
+
+/* Status */
+.status-btn {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.released {
+  background: #16a34a;
+}
+
+.not-released {
+  background: #dc2626;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 400px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal input,
+.modal select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
