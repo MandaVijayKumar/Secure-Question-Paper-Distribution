@@ -21,7 +21,7 @@ const ManageCenters = () => {
 
   const fetchCenters = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/centers",
+      "https://ru-quesitonpapers-backend.onrender.com/api/centers",
       {
         headers: { Authorization: `Bearer ${token}` }
       }
@@ -34,13 +34,13 @@ const ManageCenters = () => {
 
     if (editing) {
       await axios.put(
-        `http://localhost:5000/api/centers/${editing}`,
+        `https://ru-quesitonpapers-backend.onrender.com/api/centers/${editing}`,
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       );
     } else {
       await axios.post(
-        "http://localhost:5000/api/centers",
+        "https://ru-quesitonpapers-backend.onrender.com/api/centers",
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -60,7 +60,7 @@ const ManageCenters = () => {
     if (!window.confirm("Delete this center?")) return;
 
     await axios.delete(
-      `http://localhost:5000/api/centers/${code}`,
+      `https://ru-quesitonpapers-backend.onrender.com/api/centers/${code}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 

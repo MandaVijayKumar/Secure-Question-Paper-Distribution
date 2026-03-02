@@ -20,7 +20,7 @@ const ManageUser = () => {
 
   const fetchUsers = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/users",
+      "https://ru-quesitonpapers-backend.onrender.com/api/users",
       { headers: { Authorization: `Bearer ${token}` } }
     );
     console.log('user data is:',res.data)
@@ -30,7 +30,7 @@ const ManageUser = () => {
 
   const fetchCenters = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/centers/list",
+      "https://ru-quesitonpapers-backend.onrender.com/api/centers/list",
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setCenters(res.data);
@@ -48,7 +48,7 @@ const ManageUser = () => {
 
       if (editing) {
         await axios.put(
-          `http://localhost:5000/api/users/${editing}`,
+          `https://ru-quesitonpapers-backend.onrender.com/api/users/${editing}`,
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -59,7 +59,7 @@ const ManageUser = () => {
         }
 
         await axios.post(
-          "http://localhost:5000/api/users",
+          "https://ru-quesitonpapers-backend.onrender.com/api/users",
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -87,7 +87,7 @@ const ManageUser = () => {
   try {
 
     await axios.post(
-      "http://localhost:5000/api/users",
+      "https://ru-quesitonpapers-backend.onrender.com/api/users",
       form,
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -109,7 +109,7 @@ const ManageUser = () => {
     if (!window.confirm("Delete this user?")) return;
 
     await axios.delete(
-      `http://localhost:5000/api/users/${id}`,
+      `https://ru-quesitonpapers-backend.onrender.com/api/users/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -122,7 +122,7 @@ const ManageUser = () => {
   const toggleActive = async (user) => {
 
     await axios.put(
-      `http://localhost:5000/api/users/${user.user_id}`,
+      `https://ru-quesitonpapers-backend.onrender.com/api/users/${user.user_id}`,
       { ...user, is_active: !user.is_active },
       { headers: { Authorization: `Bearer ${token}` } }
     );

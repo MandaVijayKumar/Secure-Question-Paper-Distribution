@@ -32,7 +32,7 @@ const ManagePapers = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        "http://localhost:5000/api/papers",
+        "https://ru-quesitonpapers-backend.onrender.com/api/papers",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setPapers(res.data);
@@ -47,7 +47,7 @@ const ManagePapers = () => {
   // ================= FETCH CENTERS =================
   const fetchCenters = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/centers/list",
+      "https://ru-quesitonpapers-backend.onrender.com/api/centers/list",
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setAllCenters(res.data);
@@ -86,7 +86,7 @@ const ManagePapers = () => {
   // ================= TOGGLE RELEASE =================
   const togglePaper = async (code) => {
     await axios.patch(
-      `http://localhost:5000/api/papers/toggle/${code}`,
+      `https://ru-quesitonpapers-backend.onrender.com/api/papers/toggle/${code}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -98,7 +98,7 @@ const ManagePapers = () => {
     if (!window.confirm("Delete this paper?")) return;
 
     await axios.delete(
-      `http://localhost:5000/api/papers/${code}`,
+      `https://ru-quesitonpapers-backend.onrender.com/api/papers/${code}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -109,7 +109,7 @@ const ManagePapers = () => {
   const downloadPaper = async (code) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/papers/download/${code}`,
+        `https://ru-quesitonpapers-backend.onrender.com/api/papers/download/${code}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           responseType: "blob"
@@ -153,7 +153,7 @@ const ManagePapers = () => {
       setSaving(true);
 
       await axios.put(
-        `http://localhost:5000/api/papers/${selectedPaper.subject_code}/centers`,
+        `https://ru-quesitonpapers-backend.onrender.com/api/papers/${selectedPaper.subject_code}/centers`,
         { center_codes: editCenters },
         { headers: { Authorization: `Bearer ${token}` } }
       );
