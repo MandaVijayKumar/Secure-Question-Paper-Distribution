@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import "./Login.css";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Login = () => {
     setError("");
 
     try {
-      const res = await api.post("/api/login", {
+      const res = await axios.post("https://ru-quesitonpapers-backend.onrender.com/api/login", {
         email,
         password
       });
