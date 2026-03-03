@@ -17,7 +17,7 @@ const Subjects = () => {
 
   const fetchSubjects = async () => {
     const res = await axios.get(
-      "https://ru-quesitonpapers-backend.onrender.com/api/subjects",
+      "http://localhost:5000/api/subjects",
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setSubjects(res.data);
@@ -26,7 +26,7 @@ const Subjects = () => {
   const openEdit = async (subject_code) => {
 
     const res = await axios.get(
-      `https://ru-quesitonpapers-backend.onrender.com/api/subjects/${subject_code}`,
+      `http://localhost:5000/api/subjects/${subject_code}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -47,7 +47,7 @@ const Subjects = () => {
   const saveCenters = async () => {
 
     await axios.put(
-      `https://ru-quesitonpapers-backend.onrender.com/api/subjects/${selected.subject_code}/centers`,
+      `http://localhost:5000/api/subjects/${selected.subject_code}/centers`,
       { center_codes: assignedCenters },
       { headers: { Authorization: `Bearer ${token}` } }
     );

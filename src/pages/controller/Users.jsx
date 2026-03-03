@@ -20,7 +20,7 @@ const ManageUser = () => {
 
   const fetchUsers = async () => {
     const res = await axios.get(
-      "https://ru-quesitonpapers-backend.onrender.com/api/users",
+      "http://localhost:5000/api/users",
       { headers: { Authorization: `Bearer ${token}` } }
     );
     console.log('user data is:',res.data)
@@ -30,7 +30,7 @@ const ManageUser = () => {
 
   const fetchCenters = async () => {
     const res = await axios.get(
-      "https://ru-quesitonpapers-backend.onrender.com/api/centers/list",
+      "http://localhost:5000/api/centers/list",
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setCenters(res.data);
@@ -48,7 +48,7 @@ const ManageUser = () => {
 
       if (editing) {
         await axios.put(
-          `https://ru-quesitonpapers-backend.onrender.com/api/users/${editing}`,
+          `http://localhost:5000/api/users/${editing}`,
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -59,7 +59,7 @@ const ManageUser = () => {
         }
 
         await axios.post(
-          "https://ru-quesitonpapers-backend.onrender.com/api/users",
+          "http://localhost:5000/api/users",
           form,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -87,7 +87,7 @@ const ManageUser = () => {
   try {
 
     await axios.post(
-      "https://ru-quesitonpapers-backend.onrender.com/api/users",
+      "http://localhost:5000/api/users",
       form,
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -109,7 +109,7 @@ const ManageUser = () => {
     if (!window.confirm("Delete this user?")) return;
 
     await axios.delete(
-      `https://ru-quesitonpapers-backend.onrender.com/api/users/${id}`,
+      `http://localhost:5000/api/users/${id}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -122,7 +122,7 @@ const ManageUser = () => {
   const toggleActive = async (user) => {
 
     await axios.put(
-      `https://ru-quesitonpapers-backend.onrender.com/api/users/${user.user_id}`,
+      `http://localhost:5000/api/users/${user.user_id}`,
       { ...user, is_active: !user.is_active },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -235,6 +235,7 @@ const ManageUser = () => {
               </div>
 
               <p><strong>Email:</strong> {user.email}</p>
+              <p><strong>Password:</strong> {user.password}</p>
               <p><strong>Role:</strong> {user.role}</p>
               <p><strong>Center:</strong> {user.center_name || "Not Assigned"}</p>
 

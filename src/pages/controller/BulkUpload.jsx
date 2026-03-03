@@ -90,7 +90,7 @@ const BulkUpload = () => {
       const token = localStorage.getItem("accessToken");
 
       const response = await axios.post(
-        "https://ru-quesitonpapers-backend.onrender.com/api/papers/bulk-upload",
+        "http://localhost:5000/api/papers/bulk-upload",
         formData,
         {
           headers: {
@@ -110,7 +110,24 @@ const BulkUpload = () => {
       setLoading(false);
 
     } catch (error) {
-      alert(error.response?.data?.message || "Upload failed");
+      const msg =
+        error.response?.data?.message ||
+        "Server error during upload";
+
+      setResult({
+        total: 0,
+        successCount: 0,
+        failedCount: 1,
+        successSubjects: [],
+        failedSubjects: [
+          {
+            subject_code: "UPLOAD ERROR",
+            subject_name: "",
+            reason: msg
+          }
+        ]
+      });
+
       setLoading(false);
     }
   };
@@ -197,14 +214,50 @@ const BulkUpload = () => {
 
         {/* Result */}
         {result && (
-          <div style={styles.result}>
-            <p>Total Records: {result.total}</p>
-            <p style={{ color: "green" }}>
-              Success: {result.success}
+          <div style={styles.resultBox}>
+
+            <h3>Bulk Upload Report</h3>
+
+            <p><strong>Total Records:</strong> {result.total}</p>
+            <p style={{ color: "#16a34a" }}>
+              <strong>Successful:</strong> {result.successCount}
             </p>
-            <p style={{ color: "red" }}>
-              Failed: {result.failed}
+            <p style={{ color: "#dc2626" }}>
+              <strong>Failed:</strong> {result.failedCount}
             </p>
+
+            {/* ===== Success List ===== */}
+            {result.successSubjects?.length > 0 && (
+              <div style={styles.successList}>
+                <h4>✔ Successfully Uploaded Subjects</h4>
+                <ul>
+                  {result.successSubjects.map((item, index) => (
+                    <li key={index}>
+                      {item.subject_code} – {item.subject_name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* ===== Failed List ===== */}
+            {result.failedSubjects?.length > 0 && (
+              <div style={styles.failedList}>
+                <h4>❌ Failed Subjects</h4>
+                <ul>
+                  {result.failedSubjects.map((item, index) => (
+                    <li key={index}>
+                      <strong>{item.subject_code}</strong> – {item.subject_name}
+                      <br />
+                      <span style={{ color: "#b91c1c" }}>
+                        Reason: {item.reason}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
           </div>
         )}
       </div>
@@ -245,6 +298,27 @@ const styles = {
     marginTop: "30px",
     padding: "20px",
     background: "#f8fafc",
+  },
+  resultBox: {
+    marginTop: "30px",
+    padding: "25px",
+    background: "#f8fafc",
+    borderRadius: "10px",
+    border: "1px solid #e2e8f0"
+  },
+
+  successList: {
+    marginTop: "20px",
+    padding: "15px",
+    background: "#ecfdf5",
+    borderRadius: "8px"
+  },
+
+  failedList: {
+    marginTop: "20px",
+    padding: "15px",
+    background: "#fef2f2",
+    borderRadius: "8px"
   },
 };
 

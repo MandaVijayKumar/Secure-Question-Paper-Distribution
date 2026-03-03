@@ -12,7 +12,8 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   User,
-  Users
+  Users,
+  Calendar
 } from "lucide-react";
 import { jwtDecode } from "jwt-decode";
 import { useState, useEffect } from "react";
@@ -153,6 +154,13 @@ const Sidebar = () => {
                   collapsed={collapsed}
                   active={isActive("/controller/users")}
                   onClick={() => navigate("/controller/users")}
+                />
+                <SubMenuItem
+                  icon={<Calendar size={16} />}
+                  label="Exam Schedule"
+                  collapsed={collapsed}
+                  active={isActive("/controller/schedule")}
+                  onClick={() => navigate("/controller/schedule")}
                 />
               </div>
             </div>

@@ -13,6 +13,7 @@ import PapersList from "./pages/controller/PapersList";
 import MyPapers from "./pages/principal/MyPapers";
 import { Users } from "lucide-react";
 import ManageUser from "./pages/controller/Users";
+import Schedule from "./pages/controller/Schedule";
 
 function App() {
   return (
@@ -80,6 +81,14 @@ function App() {
         }
       />
       <Route
+  path="/controller/schedule"
+  element={
+    <ProtectedRoute role="controller">
+      <Schedule/>
+    </ProtectedRoute>
+  }
+/>
+      <Route
         path="/principal/dashboard"
         element={
           <ProtectedRoute role="principal">
@@ -103,6 +112,7 @@ function App() {
           </ProtectedRoute>
         }
       />
+      
       {/* <Route
         path="/controller/users"
         element={

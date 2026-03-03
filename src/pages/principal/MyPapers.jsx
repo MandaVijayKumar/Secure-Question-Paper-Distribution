@@ -13,7 +13,7 @@ const MyPapers = () => {
 
   const fetchPapers = async () => {
     const res = await axios.get(
-      "https://ru-quesitonpapers-backend.onrender.com/api/principal/papers",
+      "http://localhost:5000/api/principal/papers",
       {
         headers: { Authorization: `Bearer ${token}` }
       }
@@ -24,7 +24,7 @@ const MyPapers = () => {
   const downloadPaper = async (code) => {
     try {
       const response = await axios.get(
-        `https://ru-quesitonpapers-backend.onrender.com/api/principal/download/${code}`,
+        `http://localhost:5000/api/principal/download/${code}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           responseType: "blob"
@@ -64,14 +64,23 @@ const MyPapers = () => {
       year: "numeric"
     });
 
-  const formatDateTime = (date) =>
-    new Date(date).toLocaleString("en-IN", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    });
+  const formatDateTime = (date) => {
+  if (!date) return "—";
+
+  const d = new Date(date);
+
+  if (isNaN(d)) return "Invalid Date";
+
+  return d.toLocaleString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Asia/Kolkata"
+  });
+};
 
   return (
     <AdminLayout>

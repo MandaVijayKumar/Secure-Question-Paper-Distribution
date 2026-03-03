@@ -32,7 +32,7 @@ const ManagePapers = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        "https://ru-quesitonpapers-backend.onrender.com/api/papers",
+        "http://localhost:5000/api/papers",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setPapers(res.data);
@@ -47,7 +47,7 @@ const ManagePapers = () => {
   // ================= FETCH CENTERS =================
   const fetchCenters = async () => {
     const res = await axios.get(
-      "https://ru-quesitonpapers-backend.onrender.com/api/centers/list",
+      "http://localhost:5000/api/centers/list",
       { headers: { Authorization: `Bearer ${token}` } }
     );
     setAllCenters(res.data);
@@ -86,7 +86,7 @@ const ManagePapers = () => {
   // ================= TOGGLE RELEASE =================
   const togglePaper = async (code) => {
     await axios.patch(
-      `https://ru-quesitonpapers-backend.onrender.com/api/papers/toggle/${code}`,
+      `http://localhost:5000/api/papers/toggle/${code}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -98,7 +98,7 @@ const ManagePapers = () => {
     if (!window.confirm("Delete this paper?")) return;
 
     await axios.delete(
-      `https://ru-quesitonpapers-backend.onrender.com/api/papers/${code}`,
+      `http://localhost:5000/api/papers/${code}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -109,7 +109,7 @@ const ManagePapers = () => {
   const downloadPaper = async (code) => {
     try {
       const response = await axios.get(
-        `https://ru-quesitonpapers-backend.onrender.com/api/papers/download/${code}`,
+        `http://localhost:5000/api/papers/download/${code}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           responseType: "blob"
@@ -153,7 +153,7 @@ const ManagePapers = () => {
       setSaving(true);
 
       await axios.put(
-        `https://ru-quesitonpapers-backend.onrender.com/api/papers/${selectedPaper.subject_code}/centers`,
+        `http://localhost:5000/api/papers/${selectedPaper.subject_code}/centers`,
         { center_codes: editCenters },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -188,14 +188,23 @@ const ManagePapers = () => {
       year: "numeric"
     });
 
-  const formatDateTime = (date) =>
-    new Date(date).toLocaleString("en-IN", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    });
+ const formatDateTime = (date) => {
+  if (!date) return "—";
+
+  const d = new Date(date);
+
+  if (isNaN(d)) return "Invalid Date";
+
+  return d.toLocaleString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Asia/Kolkata"
+  });
+};
 
   const getBadgeStyle = (status) => {
     switch (status) {
