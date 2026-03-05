@@ -90,7 +90,7 @@ const BulkUpload = () => {
       const token = localStorage.getItem("accessToken");
 
       const response = await axios.post(
-        "http://localhost:5000/api/papers/bulk-upload",
+        "https://ru-quesitonpapers-backend.onrender.com/api/papers/bulk-upload",
         formData,
         {
           headers: {

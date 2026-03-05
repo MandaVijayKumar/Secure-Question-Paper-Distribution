@@ -18,14 +18,14 @@ const PapersList = () => {
   }, []);
 
   const fetchPapers = async () => {
-    const res = await axios.get("http://localhost:5000/api/papers", {
+    const res = await axios.get("https://ru-quesitonpapers-backend.onrender.com/api/papers", {
       headers: { Authorization: `Bearer ${token}` }
     });
     setPapers(res.data);
   };
 
   const fetchCenters = async () => {
-    const res = await axios.get("http://localhost:5000/api/centers/list", {
+    const res = await axios.get("https://ru-quesitonpapers-backend.onrender.com/api/centers/list", {
       headers: { Authorization: `Bearer ${token}` }
     });
     setCenters(res.data);
@@ -33,7 +33,7 @@ const PapersList = () => {
 
   const toggleRelease = async (paper) => {
     await axios.patch(
-      `http://localhost:5000/api/papers/release/${paper.subject_code}`,
+      `https://ru-quesitonpapers-backend.onrender.com/api/papers/release/${paper.subject_code}`,
       { is_released: !paper.is_released },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -44,7 +44,7 @@ const PapersList = () => {
     if (!window.confirm("Delete this paper?")) return;
 
     await axios.delete(
-      `http://localhost:5000/api/papers/${code}`,
+      `https://ru-quesitonpapers-backend.onrender.com/api/papers/${code}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -61,7 +61,7 @@ const PapersList = () => {
 
   const handleUpdate = async () => {
     await axios.put(
-      `http://localhost:5000/api/papers/${selectedPaper.subject_code}`,
+      `https://ru-quesitonpapers-backend.onrender.com/api/papers/${selectedPaper.subject_code}`,
       formData,
       { headers: { Authorization: `Bearer ${token}` } }
     );

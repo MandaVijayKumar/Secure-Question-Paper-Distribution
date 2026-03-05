@@ -13,7 +13,7 @@ const MyPapers = () => {
 
   const fetchPapers = async () => {
     const res = await axios.get(
-      "http://localhost:5000/api/principal/papers",
+      "https://ru-quesitonpapers-backend.onrender.com/api/principal/papers",
       {
         headers: { Authorization: `Bearer ${token}` }
       }
@@ -24,7 +24,7 @@ const MyPapers = () => {
   const downloadPaper = async (code) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/principal/download/${code}`,
+        `https://ru-quesitonpapers-backend.onrender.com/api/principal/download/${code}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           responseType: "blob"

@@ -17,7 +17,7 @@ const Schedule = () => {
 
     const fetchPapers = async () => {
         const res = await axios.get(
-            "http://localhost:5000/api/papers",
+            "https://ru-quesitonpapers-backend.onrender.com/api/papers",
             { headers: { Authorization: `Bearer ${token}` } }
         );
         setPapers(res.data);
@@ -35,7 +35,7 @@ const Schedule = () => {
     const saveSchedule = async () => {
 
         await axios.put(
-            `http://localhost:5000/api/papers/schedule/${selected.subject_code}`,
+            `https://ru-quesitonpapers-backend.onrender.com/api/papers/schedule/${selected.subject_code}`,
             form,
             { headers: { Authorization: `Bearer ${token}` } }
         );
