@@ -162,6 +162,13 @@ const Sidebar = () => {
                   active={isActive("/controller/schedule")}
                   onClick={() => navigate("/controller/schedule")}
                 />
+                <SubMenuItem
+                  icon={<FileText size={16} />}
+                  label="Download Logs"
+                  collapsed={collapsed}
+                  active={isActive("/controller/logs")}
+                  onClick={() => navigate("/controller/logs")}
+                />
               </div>
             </div>
           </>

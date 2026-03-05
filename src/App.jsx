@@ -14,6 +14,7 @@ import MyPapers from "./pages/principal/MyPapers";
 import { Users } from "lucide-react";
 import ManageUser from "./pages/controller/Users";
 import Schedule from "./pages/controller/Schedule";
+import DownloadLogs from "./pages/controller/DownloadLogs";
 
 function App() {
   return (
@@ -87,6 +88,14 @@ function App() {
       <Schedule/>
     </ProtectedRoute>
   }
+/>
+<Route
+ path="/controller/logs"
+ element={
+  <ProtectedRoute role="controller">
+    <DownloadLogs/>
+  </ProtectedRoute>
+ }
 />
       <Route
         path="/principal/dashboard"
